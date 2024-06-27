@@ -1,1 +1,2 @@
-/data
+/data/**/*.bag
+/data/**/*.tmp
