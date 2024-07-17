@@ -1,4 +1,5 @@
 /data/**/*.bag
 /data/**/*.tmp
 
-/data
+# Except .dvc files
+!data/**/*.dvc
