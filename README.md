@@ -1,7 +1,7 @@
 
 # ENTTAC Dataset
 
-This repository contains the ENTTAC dataset, organized by collection sites and dates. The raw data is collected from sensors, and processed data folders are set up for each task, aligning with robotics practices.
+This repository contains the ENTTAC dataset, organized by collection sites and dates. The raw data is collected from sensors, and processed data folders are set up for each task, aligning with robotics practices.  For dataset access, request [here](https://forms.gle/cJ6XuxaEUu76NkH77)
 
 ## File Structure
 
@@ -55,26 +55,31 @@ This repository contains the ENTTAC dataset, organized by collection sites and d
                 └── processed
 ```
 
-## Pulling Data
+## Setting Up DVC
 
-To pull specific data from the ENTTAC dataset using DVC, follow these steps:
+To access the ENTTAC dataset, follow these steps to install DVC and pull the datasets.
 
-### Prerequisites
+### Install DVC
 
-Ensure you have DVC installed and configured. If not, install DVC using:
+Ensure you have DVC installed. If not, install it using pip:
 
 ```bash
 pip install dvc
 ```
 
-### Clone the Repository
+### Pull Data from the Remote
 
-Clone this repository to your local machine:
+To pull the data for this repository, use the following commands. Ensure you are in the root directory of the cloned repository.
 
 ```bash
-git clone https://github.com/your-username/enttac-dataset.git
-cd enttac-dataset
+dvc pull
 ```
+
+This command will pull all the data tracked by DVC for the ENTTAC dataset.
+
+## Pulling Specific Data
+
+To pull specific data from the ENTTAC dataset using DVC, follow these steps:
 
 ### Pull Specific `collect` Folder Data
 
@@ -97,42 +102,6 @@ dvc pull
 
 This command will pull all raw data related to the `site_CMUCampus`.
 
-### Processing Data
-
-Processed data for each task will be stored in the `processed` folders. These folders will contain the output of preprocessing, feature extraction, and other data processing steps. Ensure your data processing scripts save their outputs to the appropriate `processed` folders.
-
-## Example Data Processing Stage
-
-Here is an example of how to define a stage in `dvc.yaml` for preprocessing data:
-
-```yaml
-stages:
-  preprocess_CMUCampus_0416:
-    cmd: python preprocess.py data/site_CMUCampus/2024_04_16/collect_01/raw data/site_CMUCampus/2024_04_16/collect_01/processed
-    deps:
-      - data/site_CMUCampus/2024_04_16/collect_01/raw
-    outs:
-      - data/site_CMUCampus/2024_04_16/collect_01/processed
-```
-
-To run this preprocessing stage and ensure the necessary data is pulled:
-
-```bash
-dvc repro preprocess_CMUCampus_0416
-```
-
-This command will pull the raw data for `site_CMUCampus/2024_04_16/collect_01`, run the preprocessing script, and store the results in the `processed` folder.
-
 ## Additional Information
-
-- Ensure that any Excel or YAML configuration files are added directly to Git and not tracked by DVC to avoid unnecessary versioning conflicts.
-
-```bash
-git add path/to/your/file.xlsx
-git add path/to/your/file.yaml
-git commit -m "Add Excel and YAML configuration files"
-```
-
-- Check your `.gitignore` and `.dvcignore` files to make sure they do not include the files you want to keep track of in Git only.
 
 For any further assistance or questions, please refer to the [DVC documentation](https://dvc.org/doc) or open an issue in this repository.
