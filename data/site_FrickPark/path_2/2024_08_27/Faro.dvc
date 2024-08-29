@@ -1,0 +1,6 @@
+outs:
+- md5: d6ac02fdd75db60deedd735382629586.dir
+  size: 824296836
+  nfiles: 200
+  hash: md5
+  path: Faro
