@@ -1,0 +1,6 @@
+outs:
+- md5: 3968a1c94df8e8333334db37ab5c5862.dir
+  size: 1063935152
+  nfiles: 5
+  hash: md5
+  path: imu_calibration

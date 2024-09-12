@@ -117,54 +117,58 @@ manage_dvc() {
 
     echo "Searching for .dvc files from $start_date to $end_date."
 
-    # Find all .dvc files with numbers from 00 to 10 or containing "faro" in all subdirectories
-    local dvc_files
-    dvc_files=$(find . -type f \( -name 'collect_*.dvc' -a \( -name 'collect_00.dvc' -o -name 'collect_01.dvc' -o -name 'collect_02.dvc' -o -name 'collect_03.dvc' -o -name 'collect_04.dvc' -o -name 'collect_05.dvc' -o -name 'collect_06.dvc' -o -name 'collect_07.dvc' -o -name 'collect_08.dvc' -o -name 'collect_09.dvc' -o -name 'collect_10.dvc' \) \) -o -name '*faro*.dvc')
+    # Function to compare dates in yyyy_mm_dd format
+    date_is_greater_or_equal() {
+        local file_date=$1
+        local filter_date=$2
+        [[ "$file_date" > "$filter_date" || "$file_date" == "$filter_date" ]]
+    }
 
-    if [ -z "$dvc_files" ]; then
-        echo "No collect_[00-10].dvc or files containing 'faro' found from $start_date to $end_date. Adding files to DVC."
-
-        # Handle overlapping DVC files
-        overlapping_files=$(dvc status | grep -oP "(?<=output: ).*")
-        if [ -n "$overlapping_files" ]; then
-            echo "Overlapping DVC files detected:"
-
-            # Extract the list of overlapping files and remove them
-            echo "$overlapping_files" | while read -r file; do
-                echo "Removing overlapping file $file"
-                dvc remove "$file" || { echo "Failed to remove overlapping file $file"; exit 1; }
-            done
+    # Find and add each file to DVC one by one, applying the date filter
+    find . -type f ! -name '*.dvc' | while read -r file; do
+        # Skip files that are ignored by .dvcignore or already tracked by Git
+        if dvc check-ignore "$file" &>/dev/null || git ls-files --error-unmatch "$file" &>/dev/null; then
+            echo "Skipping $file because it is either ignored by .dvcignore or already tracked by Git"
+            continue
         fi
 
-        # Find and add each file to DVC one by one, applying the date filter
-        find . -type f ! -name '*.dvc' | while read -r file; do
-            # Extract the date part from the file path (assuming it's in the format yyyy_mm_dd somewhere in the path)
-            file_date=$(echo "$file" | grep -oP '\d{4}_\d{2}_\d{2}')
+        # Extract the date part from the file path (assuming it's in the format yyyy_mm_dd somewhere in the path)
+        file_date=$(echo "$file" | grep -oP '\d{4}_\d{2}_\d{2}')
 
-            # Only add the file if its date is greater than or equal to the start date
-            if date_is_greater_or_equal "$file_date" "$start_date"; then
-                full_path=$(realpath "$file")  # Get the full path of the file
-                echo "Adding file $full_path to DVC..."
-                dvc add "$file" || { echo "Failed to add $full_path to DVC"; exit 1; }
-            else
-                echo "Skipping file $file because its date ($file_date) is before $start_date"
-            fi
-        done
+        # Only add the file if its date is greater than or equal to the start date
+        if date_is_greater_or_equal "$file_date" "$start_date"; then
+            full_path=$(realpath "$file")  # Get the full path of the file
+            echo "Adding file $full_path to DVC..."
+            dvc add "$file" || { echo "Failed to add $full_path to DVC"; exit 1; }
+        else
+            echo "Skipping file $file because its date ($file_date) is before $start_date"
+        fi
+    done
 
-        # Commit the changes to each .dvc file
-        for dvc_file in $(find . -type f -name '*.dvc'); do
+    # Commit the changes to each .dvc file only if the output exists and skip any .tmp.dvc files
+    for dvc_file in $(find . -type f -name '*.dvc'); do
+        if [[ $dvc_file == *.tmp.dvc ]]; then
+            echo "Skipping temporary file $dvc_file"
+            continue
+        fi
+
+        # Get the output files of the stage
+        output_exists=$(dvc status --json "$dvc_file" | grep '"changed":' | grep '"unchanged"')
+
+        if [ -n "$output_exists" ]; then
+            echo "Committing $dvc_file..."
             dvc commit "$dvc_file" || { echo "Failed to commit $dvc_file"; exit 1; }
-            # Commit the .dvc files to git
             git add "$dvc_file"
             git commit -m "Add or update $dvc_file" || { echo "Failed to commit $dvc_file to git"; exit 1; }
-        done
-    else
-        echo "collect_[00-10].dvc or files containing 'faro' already exist from $start_date to $end_date. No changes made."
-    fi
-
-    # Push all .dvc files, whether they were modified or not
-    push_dvc_files "$dir"
+        else
+            echo "Skipping commit of $dvc_file because its output file does not exist or has changed."
+        fi
+    done
 }
+
+# Run the DVC management function
+manage_dvc "$TARGET_DIR" "$START_DATE" "$CURRENT_DATE"
+
 
 # If remove_date is provided, remove old .dvc files
 if [ -n "$REMOVE_DATE" ]; then
