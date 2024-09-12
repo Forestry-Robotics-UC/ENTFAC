@@ -1,0 +1,6 @@
+outs:
+- md5: e3dde5c112e8ca126fec9f9c7678c6f9.dir
+  size: 27288193556
+  nfiles: 6
+  hash: md5
+  path: imu_lidar_calibration
