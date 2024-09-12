@@ -1,0 +1,6 @@
+outs:
+- md5: 7563de67e8b8eb1ceeecb0566c1f8f90
+  size: 2098251961
+  isexec: true
+  hash: md5
+  path: orin_data_2024-08-23-13-13-43_20.bag
