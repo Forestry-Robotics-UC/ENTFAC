@@ -100,7 +100,13 @@ push_dvc_files() {
     echo "All .dvc files have been checked and pushed if necessary."
 }
 
-# Function to check for .dvc files with naming convention and perform dvc commands
+# Function to check if a date is greater than or equal to the start date
+date_is_greater_or_equal() {
+    local file_date=$1
+    local filter_date=$2
+    [[ "$file_date" > "$filter_date" || "$file_date" == "$filter_date" ]]
+}
+
 manage_dvc() {
     local dir=$1
     local start_date=$2
@@ -118,8 +124,32 @@ manage_dvc() {
     if [ -z "$dvc_files" ]; then
         echo "No collect_[00-10].dvc or files containing 'faro' found from $start_date to $end_date. Adding files to DVC."
 
-        # Add all files to DVC
-        dvc add . || { echo "Failed to add files to DVC"; exit 1; }
+        # Handle overlapping DVC files
+        overlapping_files=$(dvc status | grep -oP "(?<=output: ).*")
+        if [ -n "$overlapping_files" ]; then
+            echo "Overlapping DVC files detected:"
+
+            # Extract the list of overlapping files and remove them
+            echo "$overlapping_files" | while read -r file; do
+                echo "Removing overlapping file $file"
+                dvc remove "$file" || { echo "Failed to remove overlapping file $file"; exit 1; }
+            done
+        fi
+
+        # Find and add each file to DVC one by one, applying the date filter
+        find . -type f ! -name '*.dvc' | while read -r file; do
+            # Extract the date part from the file path (assuming it's in the format yyyy_mm_dd somewhere in the path)
+            file_date=$(echo "$file" | grep -oP '\d{4}_\d{2}_\d{2}')
+
+            # Only add the file if its date is greater than or equal to the start date
+            if date_is_greater_or_equal "$file_date" "$start_date"; then
+                full_path=$(realpath "$file")  # Get the full path of the file
+                echo "Adding file $full_path to DVC..."
+                dvc add "$file" || { echo "Failed to add $full_path to DVC"; exit 1; }
+            else
+                echo "Skipping file $file because its date ($file_date) is before $start_date"
+            fi
+        done
 
         # Commit the changes to each .dvc file
         for dvc_file in $(find . -type f -name '*.dvc'); do
