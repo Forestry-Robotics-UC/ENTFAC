@@ -1,0 +1,447 @@
+left:
+  camera:
+    acquisition_mode: Continuous
+    acquisition_rate: 10.0
+    action_device_key: 1
+    action_group_key: 1
+    action_group_mask: 1
+    balance_ratio_abs: 1.0
+    balance_ratio_selector: Red
+    binning_x: 1
+    binning_y: 1
+    camera_info_url: file:///home/uav_orin/catkin_ws/sensors/src/safeforest_ros_general_launch/config/left.yaml
+    decimation_x: 1
+    decimation_y: 1
+    exposure: 300.0
+    exposure_auto: Once
+    exposure_auto_alg: FitRange
+    exposure_auto_max: 50000
+    exposure_auto_min: 50000
+    exposure_auto_outliers: 10000
+    exposure_auto_rate: 100
+    exposure_auto_target: 100
+    exposure_auto_tol: 5
+    frame_id: stereo_L_optical_link
+    gain: 0.0
+    gain_auto: Continuous
+    gain_auto_adjust_tol: 5
+    gain_auto_max: 32.0
+    gain_auto_min: 0.0
+    gain_auto_outliers: 0
+    gain_auto_rate: 50
+    gain_auto_target: 50
+    guid: DEV_1AB22C00BFE0
+    height: 2048
+    image_color:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    image_mono:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    image_proc2_debayer:
+      debayer: 0
+    image_proc2_rectify_color:
+      interpolation: 1
+    image_proc2_rectify_mono:
+      interpolation: 1
+    image_raw:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    image_rect:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    image_rect_color:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    ip: ''
+    iris_auto_target: 50
+    iris_mode: Continuous
+    iris_video_level_max: 110
+    iris_video_level_min: 110
+    line_mode: Input
+    line_selector: Line0
+    offset_x: 1032
+    offset_y: 1232
+    pixel_format: BayerRG8
+    print_all_features: false
+    ptp_mode: 'Off'
+    ptp_offset: -37
+    stream_bytes_per_second: 45000000
+    sync_in_selector: SyncIn1
+    sync_out_polarity: Normal
+    sync_out_selector: SyncOut1
+    sync_out_source: GPO
+    trigger_activation: RisingEdge
+    trigger_delay: 0.0
+    trigger_mode: 'On'
+    trigger_selector: FrameStart
+    trigger_source: Line0
+    use_measurement_time: false
+    whitebalance_auto: Continuous
+    whitebalance_auto_rate: 100
+    whitebalance_auto_tol: 5
+    width: 2448
+lidar_link_nodelet_manager_driver:
+  cut_angle: -0.01
+  device_ip: ''
+  enabled: true
+  frame_id: lidar_link
+  gps_time: false
+  model: 32C
+  pcap: ''
+  pcap_time: false
+  port: 2368
+  read_fast: false
+  read_once: false
+  repeat_delay: 0.0
+  rpm: 600.0
+  time_offset: 0.0
+  timestamp_first_packet: false
+lidar_link_nodelet_manager_laserscan:
+  resolution: 0.007
+  ring: -1
+lidar_link_nodelet_manager_transform:
+  calibration: /home/uav_orin/catkin_ws/sensors/src/safeforest_ros_general_launch/config/VeloView-VLP-32C.yaml
+  fixed_frame: ''
+  max_range: 130.0
+  min_range: 0.4
+  model: 32C
+  organize_cloud: false
+  target_frame: ''
+  view_direction: 0.0
+  view_width: 6.283185307179586
+mapir:
+  image_raw:
+    compressed:
+      format: jpeg
+      jpeg_optimize: false
+      jpeg_progressive: false
+      jpeg_quality: 80
+      jpeg_restart_interval: 0
+      png_level: 9
+    compressedDepth:
+      depth_max: 10.0
+      depth_quantization: 100.0
+      format: png
+      png_level: 9
+    theora:
+      keyframe_frequency: 64
+      optimize_for: 1
+      quality: 31
+      target_bitrate: 800000
+  mapir_stream:
+    auto_exposure: true
+    brightness: 0.5019607843137255
+    buffer_queue_size: 1
+    camera_info_url: ''
+    camera_name: mapir
+    contrast: 0.12549019607843137
+    exposure: 0.5
+    flip_horizontal: false
+    flip_vertical: false
+    fps: 30.0
+    frame_id: mapir_optical_link
+    height: 0
+    hue: 0.5
+    loop_videofile: false
+    output_encoding: bgr8
+    reopen_on_read_failure: false
+    saturation: 0.64
+    set_camera_fps: 30.0
+    start_frame: 0
+    stop_frame: -1
+    video_stream_provider: '0'
+    width: 0
+nmea_serial_driver_node:
+  baud: 38400
+  frame_id: gps
+  port: /dev/ttyACM0
+  time_ref_source: gps
+  useRMC: false
+  use_GNSS_time: false
+right:
+  camera:
+    acquisition_mode: Continuous
+    acquisition_rate: 10.0
+    action_device_key: 1
+    action_group_key: 1
+    action_group_mask: 1
+    balance_ratio_abs: 1.0
+    balance_ratio_selector: Red
+    binning_x: 1
+    binning_y: 1
+    camera_info_url: file:///home/uav_orin/catkin_ws/sensors/src/safeforest_ros_general_launch/config/right.yaml
+    decimation_x: 1
+    decimation_y: 1
+    exposure: 300.0
+    exposure_auto: Once
+    exposure_auto_alg: FitRange
+    exposure_auto_max: 50000
+    exposure_auto_min: 50000
+    exposure_auto_outliers: 10000
+    exposure_auto_rate: 100
+    exposure_auto_target: 100
+    exposure_auto_tol: 5
+    frame_id: stereo_R_optical_link
+    gain: 0.0
+    gain_auto: Continuous
+    gain_auto_adjust_tol: 5
+    gain_auto_max: 32.0
+    gain_auto_min: 0.0
+    gain_auto_outliers: 0
+    gain_auto_rate: 50
+    gain_auto_target: 50
+    guid: DEV_1AB22C012B08
+    height: 2048
+    image_color:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    image_mono:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    image_proc_debayer:
+      debayer: 0
+    image_proc_rectify_color:
+      interpolation: 1
+    image_proc_rectify_mono:
+      interpolation: 1
+    image_raw:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    image_rect:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    image_rect_color:
+      compressed:
+        format: jpeg
+        jpeg_optimize: false
+        jpeg_progressive: false
+        jpeg_quality: 80
+        jpeg_restart_interval: 0
+        png_level: 9
+      compressedDepth:
+        depth_max: 10.0
+        depth_quantization: 100.0
+        format: png
+        png_level: 9
+      theora:
+        keyframe_frequency: 64
+        optimize_for: 1
+        quality: 31
+        target_bitrate: 800000
+    ip: ''
+    iris_auto_target: 50
+    iris_mode: Continuous
+    iris_video_level_max: 110
+    iris_video_level_min: 110
+    line_mode: Input
+    line_selector: Line0
+    offset_x: 1032
+    offset_y: 1232
+    pixel_format: BayerRG8
+    print_all_features: false
+    ptp_mode: 'Off'
+    ptp_offset: -37
+    stream_bytes_per_second: 45000000
+    sync_in_selector: SyncIn1
+    sync_out_polarity: Normal
+    sync_out_selector: SyncOut1
+    sync_out_source: GPO
+    trigger_activation: RisingEdge
+    trigger_delay: 0.0
+    trigger_mode: 'On'
+    trigger_selector: FrameStart
+    trigger_source: Line0
+    use_measurement_time: false
+    whitebalance_auto: Continuous
+    whitebalance_auto_rate: 100
+    whitebalance_auto_tol: 5
+    width: 2448
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_tegra_ubuntu__32883: http://tegra-ubuntu:32883/
+    host_tegra_ubuntu__37863: http://tegra-ubuntu:37863/
+    host_tegra_ubuntu__40525: http://tegra-ubuntu:40525/
+    host_tegra_ubuntu__45379: http://tegra-ubuntu:45379/
+    host_tegra_ubuntu__45651: http://tegra-ubuntu:45651/
+rosversion: '1.16.0
+
+  '
+run_id: 36bc5176-61a7-11ef-ad59-00e04c681371
+vectornav:
+  angular_vel_covariance:
+  - 0.01
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.01
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.01
+  async_output_rate: 40
+  fixed_imu_rate: 800
+  frame_based_enu: false
+  frame_id: imu_link
+  imu_output_rate: 200
+  linear_accel_covariance:
+  - 0.01
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.01
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.01
+  orientation_covariance:
+  - 0.01
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.01
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.01
+  serial_baud: 921600
+  serial_port: /dev/ttyUSB0
+  tf_ned_to_enu: ($ arg imu_ned_to_enu)
