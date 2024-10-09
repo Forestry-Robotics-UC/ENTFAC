@@ -1,0 +1,6 @@
+outs:
+- md5: 7267cac38f7b0dc6959618b774d31d8d.dir
+  size: 6601111205
+  nfiles: 6
+  hash: md5
+  path: kalibr_cameras_calibration

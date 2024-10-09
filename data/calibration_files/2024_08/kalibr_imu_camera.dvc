@@ -1,0 +1,6 @@
+outs:
+- md5: 9a8c65371e73d30aa5d0e2daee3320c4.dir
+  size: 11465235781
+  nfiles: 7
+  hash: md5
+  path: kalibr_imu_camera
