@@ -1,7 +1,7 @@
 
 # ENTTAC Dataset
 
-This repository contains the ENTTAC dataset, organized by collection sites and dates. The raw data is collected from sensors, and processed data folders are set up for each task, aligning with robotics practices.  For dataset access, request [here](https://forms.gle/cJ6XuxaEUu76NkH77)
+This repository contains the ENTFAC dataset, organized by collection sites and dates. The raw data is collected from sensors, and processed data folders are set up for each task, aligning with robotics practices.  For dataset access, request [here](https://forms.gle/cJ6XuxaEUu76NkH77)
 
 ## File Structure
 
