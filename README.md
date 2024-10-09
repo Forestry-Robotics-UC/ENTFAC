@@ -1,5 +1,5 @@
 
-# ENTTAC Dataset
+# ENTFAC Dataset
 
 This repository contains the ENTFAC dataset, organized by collection sites and dates. The raw data is collected from sensors, and processed data folders are set up for each task, aligning with robotics practices.  For dataset access, request [here](https://forms.gle/cJ6XuxaEUu76NkH77)
 
@@ -57,7 +57,7 @@ This repository contains the ENTFAC dataset, organized by collection sites and d
 
 ## Setting Up DVC
 
-To access the ENTTAC dataset, follow these steps to install DVC and pull the datasets.
+To access the ENTFAC dataset, follow these steps to install DVC and pull the datasets.
 
 ### Install DVC
 
@@ -75,11 +75,11 @@ To pull the data for this repository, use the following commands. Ensure you are
 dvc pull
 ```
 
-This command will pull all the data tracked by DVC for the ENTTAC dataset.
+This command will pull all the data tracked by DVC for the ENTFAC dataset.
 
 ## Pulling Specific Data
 
-To pull specific data from the ENTTAC dataset using DVC, follow these steps:
+To pull specific data from the ENTFAC dataset using DVC, follow these steps:
 
 ### Pull Specific `collect` Folder Data
 
